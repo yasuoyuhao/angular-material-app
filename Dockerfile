@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:lts-slim
 
 RUN npm -g config set user root
 RUN npm install -g http-server

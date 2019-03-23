@@ -3,6 +3,7 @@ import { NavigationStart, NavigationEnd, Router } from '@angular/router';
 import * as screenfull from 'screenfull';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'stbui-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
@@ -11,9 +12,9 @@ export class HeaderComponent {
   @Input() customizer: any;
   @Input() sidenav: any;
 
-  isFullscreen: boolean = false;
+  isFullscreen = false;
   showLoading: boolean;
-
+  screenfull: screenfull.Screenfull;
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -25,8 +26,8 @@ export class HeaderComponent {
   }
 
   toggleFullscreen() {
-    if (screenfull.enabled) {
-      screenfull.toggle();
+    if (this.screenfull.enabled) {
+      this.screenfull.toggle();
       this.isFullscreen = !this.isFullscreen;
     }
   }
